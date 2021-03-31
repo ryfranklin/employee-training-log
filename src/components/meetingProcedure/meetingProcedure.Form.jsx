@@ -10,9 +10,11 @@ import { TextField,
          Input,
          FormControlLabel } from '@material-ui/core';
 import React from 'react'
-import MeetingProcedure from './meetingProcedure.Component';
+import { connect, useDispatch } from 'react-redux';
 import MeetingOrProcedure from './meetingProcedure.Component';
+import { addMeetingProcedure } from '../../adapters/redux/meetingProcedure/meetingProcedure.actions';
 
+export const Mcontext = React.createContext(); //exporting context object
 
 class MeetingProcedureForm extends React.Component {
     constructor(props){
@@ -48,13 +50,9 @@ class MeetingProcedureForm extends React.Component {
         this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handleMeetingProcedureRadioChange = this.handleMeetingProcedureRadioChange.bind(this);
         this.handleEmployeeDropDownChange = this.handleEmployeeDropDownChange.bind(this);
-
         this.handleEmployeeDropDownChange = this.handleEmployeeDropDownChange.bind(this);
-
         this.handleFormOnClickSumbit = this.handleFormOnClickSumbit.bind(this);
-        
-
-            
+        this.sendData = this.sendData.bind(this);  
     }
 
 
@@ -72,6 +70,7 @@ class MeetingProcedureForm extends React.Component {
     }
 
     handleFormOnClickSumbit(event) {
+        event.preventDefault();
         if (this.state.title === '') {
             alert("A title must be entered!!")
         }
@@ -82,26 +81,15 @@ class MeetingProcedureForm extends React.Component {
             alert("A employee must be selected")
         }
         else {
-            console.log(this.state.employees.length)
-            console.log(this.state)
-            for(var i = 0; i < this.state.employees.length; i++) {
-                MeetingOrProcedure.this.setState(
-                    {meetingProcedure: 
-                        {
-                            mpId:i+1, 
-                            mpTitle: this.state.title,
-                            mpMeetingProcedure: this.state.meetingProcedure,
-                            mpEmployee:this.state.employees[i]
-                        }
-                })
-            }
-            console.log(MeetingOrProcedure.this.state.meetingProcedure)
-            console.log(this.meetingProcedureData)
+            this.setState({ meetingProcedure:"" });
+            console.log(this.meetingProcedureData);  
         }
     }
 
     render() {
         return(
+
+
           <div>
           <form>
             <TextField
@@ -162,9 +150,15 @@ class MeetingProcedureForm extends React.Component {
 
 
           </div>
+  
 
         )
     }
-}
+};
+const mapDispatchToProps = dispatch => {
+    return { addMeetingProcedure: text => dispatch(addMeetingProcedure(text))}
+};
+
+
 
 export default MeetingProcedureForm;

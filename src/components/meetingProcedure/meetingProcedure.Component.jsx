@@ -1,26 +1,27 @@
 import React from 'react'
 import MeetingProcedureForm from './meetingProcedure.Form';
-
+import MeetingProcedureDataTable from './meetingProcedureDataTable.component';
 class MeetingProcedure extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             meetingProcedure:[],
+            message:"",
         }
-        this.parentMeetingProdcure = this.parentMeetingProcedure.bind(this)
-    }
 
-    parentMeetingProcedure = (data_from_child) => {
-        console.log(data_from_child);
+        this.callbackFunction = this.callbackFunction.bind(this);
+        }
+    
+    callbackFunction = (childData) => {
+        this.setState({message: childData})
     }
 
     render() {
         return(
             <div>
-                <MeetingProcedureForm 
-                    meetingProcedureParent=
-                        {this.parentMeetingProcedure.bind(this)} />
-                <MeetingProcedureDataTable />
+                <MeetingProcedureForm />
+                <MeetingProcedureDataTable parentCallback = {this.callbackFunction} />
+                <p> {this.state.message} </p>
             </div>
         
         )
