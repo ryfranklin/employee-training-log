@@ -1,17 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { combineReducers } from 'redux';
-import counterReducer from '../adapters/redux/counter/counterSlice';
-import meetingProdedureReducer from '../adapters/redux/meetingProcedure/meetingProcedure.slice';
-
-const rootReducer = combineReducers({
-  counter: counterReducer,
-  meetingProcedure: meetingProdedureReducer
-})
+import rootReducer from '../adapters/redux/root-reducer';
 
 
-const store = configureStore({
-  rootReducer
-})
-
+const store = configureStore({ reducer: rootReducer })
 
 export default store;

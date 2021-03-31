@@ -10,9 +10,7 @@ import { TextField,
          Input,
          FormControlLabel } from '@material-ui/core';
 import React from 'react'
-import { connect, useDispatch } from 'react-redux';
-import MeetingOrProcedure from './meetingProcedure.Component';
-import { addMeetingProcedure } from '../../adapters/redux/meetingProcedure/meetingProcedure.actions';
+import store from '../../app/store';
 
 export const Mcontext = React.createContext(); //exporting context object
 
@@ -40,22 +38,26 @@ class MeetingProcedureForm extends React.Component {
             'Kelly Snyder',
           ];
 
-        this.meetingProcedureRecords = {
-            id: '',
-            title: '',
-            meetingProcedure: '',
-            employeeName: '',
-        }
+        this.unsubscribe = this.unsubscribe.bind(this);
+        this.handleResetForm = this.handleResetForm.bind(this);
      
         this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handleMeetingProcedureRadioChange = this.handleMeetingProcedureRadioChange.bind(this);
         this.handleEmployeeDropDownChange = this.handleEmployeeDropDownChange.bind(this);
         this.handleEmployeeDropDownChange = this.handleEmployeeDropDownChange.bind(this);
         this.handleFormOnClickSumbit = this.handleFormOnClickSumbit.bind(this);
-        this.sendData = this.sendData.bind(this);  
+ 
     }
 
+    unsubscribe = store.subscribe(() =>
+        console.log('State after dispatch: ', store.getState())
+    )
 
+    handleResetForm = (event) => {
+        this.setState({title: '', meetingProcedure: '', employees: []})
+        console.log("Form Cleared")
+        console.log(this.state)
+    }
 
     handleTitleChange = (event) => {
         this.setState({title: event.target.value});
@@ -63,6 +65,7 @@ class MeetingProcedureForm extends React.Component {
 
     handleMeetingProcedureRadioChange(event) {
         this.setState({meetingProcedure: event.target.value})
+   
     }
 
     handleEmployeeDropDownChange(event) {
@@ -81,14 +84,16 @@ class MeetingProcedureForm extends React.Component {
             alert("A employee must be selected")
         }
         else {
-            this.setState({ meetingProcedure:"" });
-            console.log(this.meetingProcedureData);  
+            console.log(store.getState())
+            store.dispatch({ type: 'meetingProcedure/addMeetingProcedure',
+                             payload: this.state});
+
+            this.unsubscribe()
         }
     }
 
     render() {
         return(
-
 
           <div>
           <form>
@@ -137,28 +142,29 @@ class MeetingProcedureForm extends React.Component {
                 variant="contained"
                 color="primary"
                 onClick={this.handleFormOnClickSumbit}
+                type="reset"
                 >Enter</Button>
             
+            <Button 
+                variant="contained"
+                color="secondary"
+                onClick={this.handleResetForm}
+                type="reset"
+                >Reset</Button>
+
           </form>
 
           <div>
-              <h1>{this.state.title}</h1>
-              <h1>{this.state.meetingProcedure}</h1>
-              <h1>{this.state.employees}</h1>
+              <h1>{this.props.meetingProcedureRecords}</h1>
          
           </div>
 
 
           </div>
   
-
+        
         )
     }
-};
-const mapDispatchToProps = dispatch => {
-    return { addMeetingProcedure: text => dispatch(addMeetingProcedure(text))}
-};
-
-
+}
 
 export default MeetingProcedureForm;
