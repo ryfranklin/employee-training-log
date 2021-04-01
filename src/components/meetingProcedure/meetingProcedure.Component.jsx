@@ -1,6 +1,6 @@
 import React from 'react'
 import MeetingProcedureForm from './meetingProcedure.Form';
-import MeetingProcedureDataTable from './meetingProcedureDataTable.component';
+import MeetingProcedureDataGrid from './meetingProcedureDataTable.component';
 class MeetingProcedure extends React.Component {
     constructor(props) {
         super(props);
@@ -20,7 +20,7 @@ class MeetingProcedure extends React.Component {
         return(
             <div>
                 <MeetingProcedureForm />
-                <MeetingProcedureDataTable parentCallback = {this.callbackFunction} />
+                <MeetingProcedureDataGrid parentCallback = {this.callbackFunction} />
                 <p> {this.state.message} </p>
             </div>
         

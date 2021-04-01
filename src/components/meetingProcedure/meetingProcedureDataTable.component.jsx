@@ -1,22 +1,24 @@
 import React from 'react';
-
-class MeetingProcedureDataTable extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {}
-        this.columns = [
-            {key: "id", name: "ID", editable: true}
-        ]
-    }
+import { connect } from 'react-redux';
 
 
+class meetingProcedureDataTable extends React.Component {
 
     render() {
-        return(
-            <h1>Data Will Go Here!!!</h1>
+        return (
 
+            <div>
+                <h1>Data Data Data</h1>
+                { this.state.meetingProcedure }
+            </div>
         )
     }
 }
 
-export default MeetingProcedureDataTable;
+
+const mapStateToProps = (store) => {
+    return {meetingProcedure: store.meetingProcedure}
+}
+
+export default connect(mapStateToProps)(meetingProcedureDataTable);
+

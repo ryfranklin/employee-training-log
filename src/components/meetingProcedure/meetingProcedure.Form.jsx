@@ -155,7 +155,7 @@ class MeetingProcedureForm extends React.Component {
           </form>
 
           <div>
-              <h1>{this.props.meetingProcedureRecords}</h1>
+        
          
           </div>
 
