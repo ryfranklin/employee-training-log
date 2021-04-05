@@ -1,6 +1,6 @@
 import React from 'react'
 import MeetingProcedureForm from './meetingProcedure.Form';
-import MeetingProcedureDataGrid from './meetingProcedureDataTable.component';
+import MeetingProcedureDataGrid from './meetingProcedureDataGrid.component';
 class MeetingProcedure extends React.Component {
     constructor(props) {
         super(props);
