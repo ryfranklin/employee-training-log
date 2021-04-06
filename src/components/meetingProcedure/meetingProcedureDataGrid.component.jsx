@@ -1,17 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 
 
-function MeetingProcedureDataGrid(props) {
+
+
+function MeetingProcedureDataGrid({meetingProcedure}) {
+
+
     return (
+
         <div>
-            <h1>{props.employees}</h1>
-            <h1>{props.title}</h1>
+            <h1>{meetingProcedure?meetingProcedure.title:null}</h1>
+            
         </div>
     )
 }
 
-export default MeetingProcedureDataGrid;
+const mapStateToProps = (state) => state.meetingProcedure
+
+
+export default connect(mapStateToProps)(MeetingProcedureDataGrid)
 
 
 

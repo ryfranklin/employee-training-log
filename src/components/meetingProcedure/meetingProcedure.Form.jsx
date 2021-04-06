@@ -83,8 +83,7 @@ class MeetingProcedureForm extends React.Component {
         }
         if (this.state.employees === '') {
             alert("A employee must be selected")
-        }
-        else {
+        } else {
             console.log(store.getState())
             store.dispatch({ type: 'meetingProcedure/addMeetingProcedure',
                              payload: this.state});

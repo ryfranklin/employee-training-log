@@ -1,6 +1,6 @@
 import React from 'react'
 import MeetingProcedureForm from './meetingProcedure.Form';
-import MeetingProcedureDataGridContainer from './meetingProcedureDataGridContainer.component';
+import MeetingProcedureDataGrid from './meetingProcedureDataGrid.component';
 
 class MeetingProcedure extends React.Component {
     constructor(props) {
@@ -20,7 +20,7 @@ class MeetingProcedure extends React.Component {
         return(
             <div>
                 <MeetingProcedureForm />
-                <MeetingProcedureDataGridContainer />
+                <MeetingProcedureDataGrid />
                 
             </div>
         
