@@ -1,24 +1,17 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 
-class meetingProcedureDataGrid extends React.Component {
 
-    render() {
-        return (
-
-            <div>
-                <h1>Data Data Data</h1>
-
-            </div>
-        )
-    }
+function MeetingProcedureDataGrid(props) {
+    return (
+        <div>
+            <h1>{props.employees}</h1>
+            <h1>{props.title}</h1>
+        </div>
+    )
 }
 
+export default MeetingProcedureDataGrid;
 
-const mapStateToProps = (store) => {
-    return {meetingProcedure: store.meetingProcedure}
-}
 
-export default connect(mapStateToProps)(meetingProcedureDataGrid);
 

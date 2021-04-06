@@ -1,6 +1,7 @@
 import React from 'react'
 import MeetingProcedureForm from './meetingProcedure.Form';
-import MeetingProcedureDataGrid from './meetingProcedureDataGrid.component';
+import MeetingProcedureDataGridContainer from './meetingProcedureDataGridContainer.component';
+
 class MeetingProcedure extends React.Component {
     constructor(props) {
         super(props);
@@ -9,7 +10,6 @@ class MeetingProcedure extends React.Component {
             message:"",
         }
 
-        this.callbackFunction = this.callbackFunction.bind(this);
         }
     
     callbackFunction = (childData) => {
@@ -20,8 +20,8 @@ class MeetingProcedure extends React.Component {
         return(
             <div>
                 <MeetingProcedureForm />
-                <MeetingProcedureDataGrid parentCallback = {this.callbackFunction} />
-                <p> {this.state.message} </p>
+                <MeetingProcedureDataGridContainer />
+                
             </div>
         
         )
