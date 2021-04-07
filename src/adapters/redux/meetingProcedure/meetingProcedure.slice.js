@@ -1,5 +1,9 @@
 const initialState = {
-    meetingProcedure: null
+    meetingProcedure: {
+        title: '',
+        employees: '',
+        meetingProcedure: '',
+    }
 }
 export default function meetingProcedureReducer(state = initialState, action) {
     switch(action.type) {

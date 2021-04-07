@@ -8,12 +8,17 @@ import { TextField,
          MenuItem,
          InputLabel,
          Input,
-         FormControlLabel } from '@material-ui/core';
+         FormControlLabel, 
+         } from '@material-ui/core';
 import React from 'react'
 import store from '../../app/store';
+import '../meetingProcedure/meetingProcedureForm.css';
 
 
 export const Mcontext = React.createContext(); //exporting context object
+
+
+
 
 class MeetingProcedureForm extends React.Component {
     constructor(props){
@@ -47,6 +52,8 @@ class MeetingProcedureForm extends React.Component {
         this.handleEmployeeDropDownChange = this.handleEmployeeDropDownChange.bind(this);
         this.handleEmployeeDropDownChange = this.handleEmployeeDropDownChange.bind(this);
         this.handleFormOnClickSumbit = this.handleFormOnClickSumbit.bind(this);
+ 
+    
  
     }
 
@@ -92,28 +99,43 @@ class MeetingProcedureForm extends React.Component {
         }
     }
 
-    render() {
-        return(
 
-          <div>
-          <form>
+
+
+
+
+    render () {
+        return (
+
+
+          <div className='meetingProcedureFormWrapper'>
+          <form >
+
+            <h2>Create A New Meeting/Procedure</h2>
+
             <TextField
                 placeholder="Enter a title:"
+                margin='dense'    
+                label='Enter a title:'    
                 value={this.state.title}
                 required
                 onChange={this.handleTitleChange}
+                className='titleTextField'   
+                fullWidth = 'true' 
+                size='medium'
             />
-    
+
+
+            <div className='radioButtonGroup'>
             <FormLabel component="legend">MeetingOrProcedure</FormLabel>
             <RadioGroup name="meetingProcedure" value={this.state.meetingProcedure} onChange={this.handleMeetingProcedureRadioChange}>
                 <FormControlLabel value="meeting" control={<Radio />} label="Meeting" />
                 <FormControlLabel value="procedure" control={<Radio />} label="Procedure" />
-
             </RadioGroup>
+            </div>
 
 
-         
-            <InputLabel id="demo-mutiple-chip-label">Chip</InputLabel>
+            <InputLabel id="demo-mutiple-chip-label">Employees</InputLabel>
             <Select
                 labelId="demo-mutiple-chip-label"
                 id="demo-mutiple-chip"
@@ -166,5 +188,7 @@ class MeetingProcedureForm extends React.Component {
         )
     }
 }
+
+
 
 export default MeetingProcedureForm;
